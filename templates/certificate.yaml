@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pksdemo-cert
+  namespace: istio-system
+spec:
+  secretName: pksdemo-tls-secret
+  issuerRef:
+    name: app-selfsigned-issuer
+    # We can reference ClusterIssuers by changing the kind here.
+    # The default value is Issuer (i.e. a locally namespaced Issuer)
+    kind: ClusterIssuer
+  commonName: pksdemo.haas-495.pez.vmware.com
+  ##isCA: true
+  duration: 8760h
+  dnsNames:
+    - pksdemo.haas-495.pez.vmware.com
